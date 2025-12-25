@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
+import { RegistrationForm } from "@/components/RegistrationForm";
 
 /**
  * W-ONE STUDIO - Minimalist Intellectual Design
@@ -15,6 +16,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [expandedService, setExpandedService] = useState<string | null>(null);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -54,7 +56,11 @@ export default function Home() {
               </p>
               
               <div className="flex gap-4 pt-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90"
+                  onClick={() => setShowRegistrationModal(true)}
+                >
                   เริ่มต้นวันนี้
                 </Button>
                 <Button variant="outline" size="lg">
@@ -308,11 +314,37 @@ export default function Home() {
             size="lg" 
             variant="outline"
             className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            onClick={() => setShowRegistrationModal(true)}
           >
             เริ่มต้นการเปลี่ยนแปลง <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </section>
+
+      {/* Registration Modal */}
+      {showRegistrationModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div className="bg-background rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-background border-b border-border p-6 flex items-center justify-between">
+              <h2 className="text-2xl font-bold">ลงทะเบียน</h2>
+              <button
+                onClick={() => setShowRegistrationModal(false)}
+                className="text-foreground/50 hover:text-foreground transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <p className="text-foreground/70 mb-6">
+                เข้าร่วม W-ONE STUDIO แล้วเริ่มต้นการออกแบบเส้นทางชีวิตของคุณ
+              </p>
+              <RegistrationForm />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="border-t border-border py-12 bg-secondary/5">
