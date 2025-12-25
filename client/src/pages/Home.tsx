@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import { RegistrationForm } from "@/components/RegistrationForm";
+import ContactFormModal from "@/components/ContactFormModal";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 /**
  * W-ONE STUDIO - Minimalist Intellectual Design
@@ -17,6 +19,7 @@ import { RegistrationForm } from "@/components/RegistrationForm";
 export default function Home() {
   const [expandedService, setExpandedService] = useState<string | null>(null);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -43,7 +46,11 @@ export default function Home() {
             >
               Founder
             </a>
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowContactModal(true)}
+            >
               Contact
             </Button>
           </div>
@@ -478,6 +485,15 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        open={showContactModal}
+        onOpenChange={setShowContactModal}
+      />
     </div>
   );
 }
