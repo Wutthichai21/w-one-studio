@@ -1,3 +1,4 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
@@ -18,6 +19,10 @@ import TrustSection from "@/components/TrustSection";
  */
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   const [expandedService, setExpandedService] = useState<string | null>(null);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
