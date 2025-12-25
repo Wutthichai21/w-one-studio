@@ -43,4 +43,19 @@ export const files = mysqlTable("files", {
 export type File = typeof files.$inferSelect;
 export type InsertFile = typeof files.$inferInsert;
 
+/**
+ * File Shares table for managing file sharing and permissions
+ */
+export const fileShares = mysqlTable("fileShares", {
+  id: varchar("id", { length: 36 }).primaryKey(),
+  fileId: int("fileId").notNull(),
+  userId: int("userId").notNull(),
+  isPublic: int("isPublic").default(0).notNull(),
+  expiresAt: timestamp("expiresAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type FileShare = typeof fileShares.$inferSelect;
+export type InsertFileShare = typeof fileShares.$inferInsert;
+
 // TODO: Add your tables here

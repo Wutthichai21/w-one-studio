@@ -12,7 +12,11 @@ interface UploadedFile {
   uploadedAt: Date;
 }
 
-export default function FileUploadComponent() {
+interface FileUploadComponentProps {
+  onUploadSuccess?: () => void;
+}
+
+export default function FileUploadComponent({ onUploadSuccess }: FileUploadComponentProps) {
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
