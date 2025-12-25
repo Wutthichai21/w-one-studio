@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { useNotification } from '@/contexts/NotificationContext';
-import { Loader2 } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useNotification } from "@/contexts/NotificationContext";
+import { Loader2 } from "lucide-react";
 
 /**
  * RegistrationForm - ฟอร์มลงทะเบียนสำหรับ W-ONE STUDIO
- * 
+ *
  * เมื่อผู้ใช้ลงทะเบียนสำเร็จ จะแสดง Push Notification
  * "สมัครสมาชิกสำเร็จ ยินดีต้อนรับสู่เว็บไซต์ของเรา"
  */
 
 export function RegistrationForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -22,7 +22,7 @@ export function RegistrationForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -30,10 +30,10 @@ export function RegistrationForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // ตรวจสอบว่าฟอร์มถูกกรอกครบถ้วน
     if (!formData.name || !formData.email || !formData.phone) {
-      showNotification('กรุณากรอกข้อมูลให้ครบถ้วน', 'warning');
+      showNotification("กรุณากรอกข้อมูลให้ครบถ้วน", "warning");
       return;
     }
 
@@ -41,17 +41,17 @@ export function RegistrationForm() {
 
     try {
       // จำลองการส่งข้อมูลไปยังเซิร์ฟเวอร์
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       // แสดง notification สำเร็จ
       showNotification(
-        'สมัครสมาชิกสำเร็จ ยินดีต้อนรับสู่เว็บไซต์ของเรา',
-        'success',
+        "สมัครสมาชิกสำเร็จ ยินดีต้อนรับสู่เว็บไซต์ของเรา",
+        "success",
         4000
       );
 
       // รีเซ็ตฟอร์ม
-      setFormData({ name: '', email: '', phone: '' });
+      setFormData({ name: "", email: "", phone: "" });
       setHasSubmitted(true);
 
       // ซ่อนข้อความสำเร็จหลังจาก 3 วินาที
@@ -59,7 +59,7 @@ export function RegistrationForm() {
         setHasSubmitted(false);
       }, 3000);
     } catch (error) {
-      showNotification('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง', 'error');
+      showNotification("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง", "error");
     } finally {
       setIsLoading(false);
     }
@@ -135,7 +135,7 @@ export function RegistrationForm() {
             กำลังส่งข้อมูล...
           </>
         ) : (
-          'ลงทะเบียน'
+          "ลงทะเบียน"
         )}
       </Button>
     </form>

@@ -1,10 +1,10 @@
-import { useNotification } from '@/contexts/NotificationContext';
-import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useNotification } from "@/contexts/NotificationContext";
+import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from "lucide-react";
+import { useEffect, useState } from "react";
 
 /**
  * NotificationContainer - แสดง Push Notifications ที่มุมขวาล่างของหน้าจอ
- * 
+ *
  * Design: Minimalist Intellectual
  * - ใช้สีหลักของสตูดิโอ (burnt orange) สำหรับ success
  * - ตำแหน่ง: มุมขวาล่าง
@@ -25,13 +25,13 @@ export function NotificationContainer() {
 
   const getIcon = (type: string) => {
     switch (type) {
-      case 'success':
+      case "success":
         return <CheckCircle className="w-5 h-5 text-green-600" />;
-      case 'error':
+      case "error":
         return <AlertCircle className="w-5 h-5 text-red-600" />;
-      case 'warning':
+      case "warning":
         return <AlertTriangle className="w-5 h-5 text-yellow-600" />;
-      case 'info':
+      case "info":
       default:
         return <Info className="w-5 h-5 text-blue-600" />;
     }
@@ -39,21 +39,21 @@ export function NotificationContainer() {
 
   const getBackgroundColor = (type: string) => {
     switch (type) {
-      case 'success':
-        return 'bg-green-50 border-green-200';
-      case 'error':
-        return 'bg-red-50 border-red-200';
-      case 'warning':
-        return 'bg-yellow-50 border-yellow-200';
-      case 'info':
+      case "success":
+        return "bg-green-50 border-green-200";
+      case "error":
+        return "bg-red-50 border-red-200";
+      case "warning":
+        return "bg-yellow-50 border-yellow-200";
+      case "info":
       default:
-        return 'bg-blue-50 border-blue-200';
+        return "bg-blue-50 border-blue-200";
     }
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 pointer-events-none space-y-3">
-      {notifications.map((notification) => (
+      {notifications.map(notification => (
         <div
           key={notification.id}
           className={`
@@ -68,13 +68,13 @@ export function NotificationContainer() {
           <div className="flex-shrink-0 pt-0.5">
             {getIcon(notification.type)}
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-foreground">
               {notification.message}
             </p>
           </div>
-          
+
           <button
             onClick={() => removeNotification(notification.id)}
             className="flex-shrink-0 text-foreground/50 hover:text-foreground transition-colors"
