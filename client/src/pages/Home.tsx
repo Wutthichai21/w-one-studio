@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import ContactFormModal from "@/components/ContactFormModal";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import TrustSection from "@/components/TrustSection";
 
 /**
  * W-ONE STUDIO - Minimalist Intellectual Design
@@ -342,11 +343,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="border-t border-border pt-6">
+                <div className="border-t border-border pt-6">
                 <p className="text-sm font-semibold text-primary mb-4">
                   Certified by
                 </p>
-                <div className="grid grid-cols-2 gap-4 text-sm text-foreground/70">
+                <div className="space-y-2 text-sm text-foreground/70">
                   <div>IBM — Data & Technology</div>
                   <div>University of London — Business Strategy</div>
                   <div>Google — Digital Marketing</div>
@@ -485,6 +486,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Trust Section */}
+      <TrustSection />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
